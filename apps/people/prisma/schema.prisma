@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-service-client-js"
+}
+
+generator prismaClassGenerator {
+  provider               = "prisma-service-class-generator"
+  output                 = "./generated"
+  separateEnumFields     = "true"
+  dryRun                 = "false"
+  separateRelationFields = "true"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id            String    @id @default(cuid())
+  login         String    @unique @db.VarChar(256)
+  email         String    @unique @db.VarChar(256)
+  password      String    @db.VarChar(256)
+  age           Int
+  details       String    @db.VarChar(1000)
+  isDeleted     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  roles         Roles[]
+  activeAvatars Int       @default(0)
+  balance       Decimal   @default(0.00) @db.Decimal(10, 2)
+  avatar        Avatar[]
+}
+
+model Avatar {
+  path      String    @unique @db.VarChar(256)
+  name      String    @unique @db.VarChar(256)
+  personId  String    @db.VarChar(256)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  isDeleted Boolean   @default(false)
+  person    Person    @relation(fields: [personId], references: [id])
+}
+
+enum Roles {
+  ADMIN
+  USER
+}
