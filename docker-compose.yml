@@ -1,0 +1,78 @@
+services:
+  nats:
+    image: nats:alpine3.17
+    container_name: "people-nats"
+    env_file:
+      - .env
+    environment:
+      NATS_SERVERS: ${NATS_SERVERS}
+      NATS_USERNAME: ${NATS_USERNAME}
+      NATS_PASSWORD: ${NATS_PASSWORD}
+    command: "--js -m 8009"
+    volumes:
+      - nats_data:/data
+    ports:
+      - "4222:${NATS_PORT}"
+      - "8009:8009"
+
+  postgres:
+    env_file: .env
+    container_name: "people-postgres"
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_data:/data/postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+  pgadmin:
+    env_file: .env
+    container_name: "people-pgadmin"
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - postgres
+
+  redis:
+    env_file: .env
+    container_name: "people-redis"
+    image: redis
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_USER: ${REDIS_USER}
+    volumes:
+      - redis_data:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+    restart: unless-stopped
+
+  minio:
+    env_file: .env
+    image: minio/minio
+    container_name: "people-minio"
+    command: server --console-address ":9001" /data
+    ports:
+      - "${MINIO_PORT_1}:9000"
+      - "${MINIO_PORT_2}:9001"
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+
+volumes:
+  nats_data:
+  postgres_data:
+  pgadmin_data:
+  redis_data:
+  minio_data:

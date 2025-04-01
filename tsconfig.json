@@ -1,0 +1,80 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/http-exception-filter": [
+        "libs/http-exception-filter/src"
+      ],
+      "@app/http-exception-filter/*": [
+        "libs/http-exception-filter/src/*"
+      ],
+      "@people/models": [
+        "apps/people/prisma/generated/index.ts"
+      ],
+      "@app/validation-pipe-config": [
+        "libs/validation-pipe-config/src"
+      ],
+      "@app/validation-pipe-config/*": [
+        "libs/validation-pipe-config/src/*"
+      ],
+      "@app/nats-exception-filter": [
+        "libs/nats-exception-filter/src"
+      ],
+      "@app/nats-exception-filter/*": [
+        "libs/nats-exception-filter/src/*"
+      ],
+      "@app/environment-variables-validate": [
+        "libs/environment-variables-validate/src"
+      ],
+      "@app/environment-variables-validate/*": [
+        "libs/environment-variables-validate/src/*"
+      ],
+      "@app/contracts/notification": [
+        "libs/contracts/notification/src"
+      ],
+      "@app/contracts/notification/*": [
+        "libs/contracts/notification/src/*"
+      ],
+      "@app/contracts/ping-pong": [
+        "libs/contracts/ping-pong/src"
+      ],
+      "@app/contracts/ping-pong/*": [
+        "libs/contracts/ping-pong/src/*"
+      ],
+      "@app/nats-config": [
+        "libs/nats-config/src"
+      ],
+      "@app/nats-config/*": [
+        "libs/nats-config/src/*"
+      ],
+      "@app/contracts/transfer-money": [
+        "libs/contracts/transfer-money/src"
+      ],
+      "@app/contracts/transfer-money/*": [
+        "libs/contracts/transfer-money/src/*"
+      ],
+      "@app/jwt-module-configured": [
+        "libs/jwt-module-configured/src"
+      ],
+      "@app/jwt-module-configured/*": [
+        "libs/jwt-module-configured/src/*"
+      ]
+    }
+  }
+}

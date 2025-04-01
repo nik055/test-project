@@ -1,0 +1,116 @@
+{
+  "name": "people",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/apps/people/main",
+    "seed": "ts-node apps/people/prisma/seed.ts",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./apps/people/test/jest-e2e.json",
+    "test-people:e2e": "yarn run seed && jest people.e2e.spec.ts --verbose",
+    "migrate": "apps/people/prisma migrate dev && yarn run seed",
+    "setup:db": "prisma db push && prisma db seed"
+  },
+  "prisma": {
+    "schema": "apps/people/prisma/schema.prisma",
+    "seed": "ts-node apps/people/prisma/seed.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.712.0",
+    "@nestjs/bullmq": "^10.2.3",
+    "@nestjs/cache-manager": "^2.3.0",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/microservices": "^10.4.15",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/platform-socket.io": "^10.4.15",
+    "@nestjs/swagger": "^7.4.2",
+    "@nestjs/websockets": "^10.4.15",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/client": "^5.20.0",
+    "bcrypt": "^5.1.1",
+    "bullmq": "^5.30.1",
+    "cache-manager": "5.7.6",
+    "cache-manager-redis-yet": "^5.1.5",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "nats": "^2.29.1",
+    "prisma-class-generator": "^0.2.11",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.4.4",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/passport-local": "^1.0.38",
+    "@types/supertest": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "prisma": "^5.20.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/http-exception-filter(|/.*)$": "<rootDir>/libs/http-exception-filter/src/$1",
+      "^@app/validation-pipe-config(|/.*)$": "<rootDir>/libs/validation-pipe-config/src/$1",
+      "^@app/nats-exception-filter(|/.*)$": "<rootDir>/libs/nats-exception-filter/src/$1",
+      "^@app/environment-variables-validate(|/.*)$": "<rootDir>/libs/environment-variables-validate/src/$1",
+      "^@app/contracts/notification(|/.*)$": "<rootDir>/libs/contracts/notification/src/$1",
+      "^@app/contracts/ping-pong(|/.*)$": "<rootDir>/libs/contracts/ping-pong/src/$1",
+      "^@app/nats-config(|/.*)$": "<rootDir>/libs/nats-config/src/$1",
+      "^@app/contracts/transfer-money(|/.*)$": "<rootDir>/libs/contracts/transfer-money/src/$1",
+      "^@app/jwt-config(|/.*)$": "<rootDir>/libs/jwt-config/src/$1"
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

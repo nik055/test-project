@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/people/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/people/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/people",
+  "projects": {
+    "people": {
+      "type": "application",
+      "root": "apps/people",
+      "entryFile": "main",
+      "sourceRoot": "apps/people/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/people/tsconfig.app.json"
+      }
+    },
+    "notification-service": {
+      "type": "application",
+      "root": "apps/notification-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/notification-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/notification-service/tsconfig.app.json"
+      }
+    },
+    "http-exception-filter": {
+      "type": "library",
+      "root": "libs/http-exception-filter",
+      "entryFile": "index",
+      "sourceRoot": "libs/http-exception-filter/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/http-exception-filter/tsconfig.lib.json"
+      }
+    },
+    "validation-pipe-config": {
+      "type": "library",
+      "root": "libs/validation-pipe-config",
+      "entryFile": "index",
+      "sourceRoot": "libs/validation-pipe-config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/validation-pipe-config/tsconfig.lib.json"
+      }
+    },
+    "nats-exception-filter": {
+      "type": "library",
+      "root": "libs/nats-exception-filter",
+      "entryFile": "index",
+      "sourceRoot": "libs/nats-exception-filter/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nats-exception-filter/tsconfig.lib.json"
+      }
+    },
+    "environment-variables-validate": {
+      "type": "library",
+      "root": "libs/environment-variables-validate",
+      "entryFile": "index",
+      "sourceRoot": "libs/environment-variables-validate/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/environment-variables-validate/tsconfig.lib.json"
+      }
+    },
+    "contracts/notification": {
+      "type": "library",
+      "root": "libs/contracts/notification",
+      "entryFile": "index",
+      "sourceRoot": "libs/contracts/notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/contracts/notification/tsconfig.lib.json"
+      }
+    },
+    "contracts/ping-pong": {
+      "type": "library",
+      "root": "libs/contracts/ping-pong",
+      "entryFile": "index",
+      "sourceRoot": "libs/contracts/ping-pong/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/contracts/ping-pong/tsconfig.lib.json"
+      }
+    },
+    "nats-config": {
+      "type": "library",
+      "root": "libs/nats-config",
+      "entryFile": "index",
+      "sourceRoot": "libs/nats-config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nats-config/tsconfig.lib.json"
+      }
+    },
+    "contracts/transfer-money": {
+      "type": "library",
+      "root": "libs/contracts/transfer-money",
+      "entryFile": "index",
+      "sourceRoot": "libs/contracts/transfer-money/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/contracts/transfer-money/tsconfig.lib.json"
+      }
+    },
+    "jwt-config": {
+      "type": "library",
+      "root": "libs/jwt-config",
+      "entryFile": "index",
+      "sourceRoot": "libs/jwt-config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/jwt-config/tsconfig.lib.json"
+      }
+    }
+  }
+}
